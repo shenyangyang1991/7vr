@@ -1,0 +1,35 @@
+<div class="wrapper content">
+	<div class="close" onclick="$.vr.forget.hide();"></div>
+	<div class="body">
+		<div class="login-h">手机找回密码</div>
+		<div class="input">
+			<input type="text" name="mobile" id="mobile" value="请输入手机号" onblur="$.vr.form.placeholderBlur(this, '请输入手机号')" onfocus="$.vr.form.placeholderFocus(this, '请输入手机号')" />
+		</div>
+		<div class="code-group">
+			<div class="code-input pull-left">
+				<input type="text" name="icode" id="icode" value="图片验证码" onblur="$.vr.form.placeholderBlur(this, '图片验证码')" onfocus="$.vr.form.placeholderFocus(this, '图片验证码')" />
+			</div>
+			<a href="javascript:void();" class="code-btn pull-right">
+				<img src="" title="点击更换图片"/>
+			</a>
+		</div>
+		<div class="code-group">
+			<div class="code-input pull-left">
+				<input type="text" name="xcode" id="xcode" value="验证码" onblur="$.vr.form.placeholderBlur(this, '验证码')" onfocus="$.vr.form.placeholderFocus(this, '验证码')" />
+			</div>
+			<a href="" class="code-btn pull-right">
+				获取动态码
+			</a>
+		</div>
+		<div class="input">
+			<input type="text" name="passwd" id="passwd" value="请输入6~12位重置密码" onblur="$.vr.form.placeholderBlur(this, '请输入6~12位重置密码')" onfocus="$.vr.form.placeholderFocus(this, '请输入6~12位重置密码')" />
+		</div>
+
+		<a class="login-sub" href="javascript:$.vr.forget.signin();">
+			提交
+		</a>
+		<a class="register" href="javascript:$.vr.forget.login();">
+			记起密码？<span>立即登录</span>
+		</a>
+	</div>
+</div>

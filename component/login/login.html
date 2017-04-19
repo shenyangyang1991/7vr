@@ -1,0 +1,32 @@
+<div class="wrapper content">
+	<div class="close" onclick="$.vr.login.hide();"></div>
+	<div class="body">
+		<div class="login-h">欢迎来到7VR.tv，请登录</div>
+		<div class="input">
+			<input type="text" name="mobile" id="mobile" value="请输入手机号" onblur="$.vr.form.placeholderBlur(this, '请输入手机号')" onfocus="$.vr.form.placeholderFocus(this, '请输入手机号')" />
+		</div>
+		<div class="input">
+			<input type="text" name="passwd" id="passwd" value="请输入6~12位密码" onblur="$.vr.form.placeholderBlur(this, '请输入6~12位密码')" onfocus="$.vr.form.placeholderFocus(this, '请输入6~12位密码')" />
+		</div>
+		<div class="attl">
+			<div class="rem pull-left">
+				<label for="auto-login">
+					<input type="checkbox" name="auto-login" id="auto-login" onchange="$.vr.login.auto(this);" />
+					7天内自动登录
+				</label>
+			</div>
+			<div class="for pull-right">
+				<a href="javascript:$.vr.login.forget();">
+					忘记密码？
+				</a>
+			</div>
+		</div>
+
+		<a class="login-sub" href="javascript:$.vr.login.signin();">
+			登录
+		</a>
+		<a class="register" href="javascript:$.vr.login.reigster();">
+			没有账号？<span>新用户注册</span>
+		</a>
+	</div>
+</div>

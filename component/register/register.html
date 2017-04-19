@@ -1,0 +1,44 @@
+<div class="wrapper content">
+	<div class="close" onclick="$.vr.register.hide();"></div>
+	<div class="body">
+		<div class="login-h">欢迎注册7VR.TV</div>
+		<div class="input">
+			<input type="text" name="mobile" id="mobile" value="请输入手机号" onblur="$.vr.form.placeholderBlur(this, '请输入手机号')" onfocus="$.vr.form.placeholderFocus(this, '请输入手机号')" />
+		</div>
+		<div class="input">
+			<input type="text" name="passwd" id="passwd" value="请输入6~12位密码" onblur="$.vr.form.placeholderBlur(this, '请输入6~12位密码')" onfocus="$.vr.form.placeholderFocus(this, '请输入6~12位密码')" />
+		</div>
+		<div class="code-group">
+			<div class="code-input pull-left">
+				<input type="text" name="icode" id="icode" value="图片验证码" onblur="$.vr.form.placeholderBlur(this, '图片验证码')" onfocus="$.vr.form.placeholderFocus(this, '图片验证码')" />
+			</div>
+			<a href="javascript:void();" class="code-btn pull-right">
+				<img src="" title="点击更换图片"/>
+			</a>
+		</div>
+		<div class="code-group">
+			<div class="code-input pull-left">
+				<input type="text" name="xcode" id="xcode" value="验证码" onblur="$.vr.form.placeholderBlur(this, '验证码')" onfocus="$.vr.form.placeholderFocus(this, '验证码')" />
+			</div>
+			<a href="" class="code-btn pull-right">
+				获取动态码
+			</a>
+		</div>
+		<div class="attl">
+			<div class="rem pull-left">
+				<label for="agree">
+					<input type="checkbox" name="agree" id="agree" onchange="$.vr.login.auto(this);" />
+				</label>
+				<a class="protocol" href="javascript:$.vr.register.protocol();">7VR用户协议</a>
+			</div>
+			
+		</div>
+
+		<a class="login-sub" href="javascript:$.vr.register.signin();">
+			注册
+		</a>
+		<a class="register" href="javascript:$.vr.register.login();">
+			已有账号？<span>立即登录</span>
+		</a>
+	</div>
+</div>

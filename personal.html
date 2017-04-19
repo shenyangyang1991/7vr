@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="renderer" content="webkit" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/theme.css" />
+	</head>
+
+	<body>
+		<div id="navbar"></div>
+		<div id="personal">
+			<div class="container">
+				<div id="bar" class="pull-left">
+					<div class="personal active">
+						个人资料
+					</div>
+					<div class="account" onclick="javascript:location.href='account.html'">
+						账户安全
+					</div>
+				</div>
+				<div id="main" class="pull-right">
+					<div class="personal-h">
+						基础信息
+					</div>
+					<div class="form">
+						<div class="fieldset">
+							<label for="tx" class="pull-left">
+								<span>头像</span>
+							</label>
+							<div class="f-content pull-right">
+								<img src="" alt="点击上传图片" title="点击上传图片" />
+								<input type="file" name="tx" id="tx" />
+							</div>
+						</div>
+						<div class="fieldset">
+							<label for="tx" class="pull-left">
+								<span>用户名</span>
+							</label>
+							<div class="f-content pull-right">
+								<input type="text" name="nickname" id="nickname" value="默认用户名" />
+							</div>
+						</div>
+						<div class="fieldset">
+							<label for="tx" class="pull-left">
+								<span>性别</span>
+							</label>
+							<div class="f-content pull-right">
+								<label for="man" class="pull-left">
+									<input type="radio" name="sex" id="man" value="" />
+									男
+								</label>
+								<label for="woman" class="pull-left">
+									<input type="radio" name="sex" id="woman" value="" />
+									女
+								</label>
+								<label for="none" class="pull-left">
+									<input type="radio" name="sex" id="none" value="" />
+									未知
+								</label>
+							</div>
+						</div>
+						<div class="fieldset">
+							<label for="tx" class="pull-left">
+								<span>个人简介</span>
+							</label>
+							<div class="f-content pull-right">
+								<textarea class="textarea">暂时还没有简介</textarea>
+							</div>
+						</div>
+						
+						<a class="save" href="###">
+							保存
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="index-foot">
+			&copy;Copyright 2017 Highfaner
+		</div>
+		<script src="https://cdn.bootcss.com/jquery/1.4.0/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jquery-cookie/1.3.0/jquery.cookie.min.js"></script>
+		<script src="js/vr.js"></script>
+	</body>
+
+</html>
