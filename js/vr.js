@@ -251,7 +251,7 @@
 			}
 			this.links.append(__lnk);
 		}
-		if (location.href.indexOf('index') == -1) {
+		if (location.href.indexOf('index') == -1 && !(/^\/7vr\/$/.test(location.pathname))) {
 			this.ele.css('background','#1b1b1b');
 		} else {
 			scrollEvent(this.ele);
@@ -263,7 +263,7 @@
 		NAVBAR_LINK_HOME : {
 			__link : 'index.html',
 			__txt : '网站首页',
-			__is : navbarIsActive('index')
+			__is : (navbarIsActive('index') || /^\/7vr\/$/.test(location.pathname))
 		},
 		NAVBAR_LINK_CLASSES : {
 			__link : 'classes.html',
