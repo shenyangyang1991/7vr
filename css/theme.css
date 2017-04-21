@@ -713,7 +713,7 @@ html, body {
 }
 
 #classes-details .cd-h {
-	width: 100%;
+	
 	font-size: 24px;
 	font-weight: bold;
 }
@@ -842,4 +842,32 @@ html, body {
 
 #classes-details .cd-l-c-txt {
 	padding-top: 10px;
+}
+
+#classes-details .cd-hh {
+	overflow: hidden;
+}
+
+#classes-details .back {
+	width: 0;
+	height: 0;
+	/* margin-top: 11px; */
+	margin-right: 8px;
+	vertical-align: middle;
+	border-top: 12px solid transparent;
+	border-right: 12px solid #009944;
+	border-left: 12px solid transparent;
+	border-bottom: 12px solid transparent;
+}
+
+#classes-details .tt {
+	font-size: 24px;
+	line-height: 25px;
+}
+
+#classes-details .cd-b {
+	height: 25px;
+	padding: 10px 0;
+	margin-right: 20px;
+	cursor: pointer;
 }
