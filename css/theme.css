@@ -851,17 +851,18 @@ html, body {
 #classes-details .back {
 	width: 0;
 	height: 0;
-	/* margin-top: 11px; */
+	margin-top: 5px;
 	margin-right: 8px;
 	vertical-align: middle;
-	border-top: 12px solid transparent;
-	border-right: 12px solid #009944;
-	border-left: 12px solid transparent;
-	border-bottom: 12px solid transparent;
+	border-top: 8px solid transparent;
+	border-right: 8px solid #009944;
+	border-left: 8px solid transparent;
+	border-bottom: 8px solid transparent;
 }
 
 #classes-details .tt {
-	font-size: 24px;
+	color: #009944;
+	font-size: 18px;
 	line-height: 25px;
 }
 
