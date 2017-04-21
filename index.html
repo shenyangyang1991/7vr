@@ -20,7 +20,7 @@
 					var __w = document.body.clientWidth || document.documentElement.clientWidth;
 					var __h = __w / 2;
 					var __ib = doc.getElementById('index-banner');
-					var __im = doc.querySelector('#index-banner img');
+					var __im = __ib.getElementsByTagName('img')[0];
 					var __tm = new Image();
 					__tm.src = 'img/index-banner.jpg';
 					__tm.onload = function() {

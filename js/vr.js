@@ -22,7 +22,7 @@
 			} else if (is =="register") {
 				$.vr.register.show();
 			}
-		},
+		}
 		
 	}
 })(jQuery, window, document);
@@ -263,7 +263,7 @@
 		NAVBAR_LINK_HOME : {
 			__link : 'index.html',
 			__txt : '网站首页',
-			__is : navbarIsActive('index'),
+			__is : navbarIsActive('index')
 		},
 		NAVBAR_LINK_CLASSES : {
 			__link : 'classes.html',
