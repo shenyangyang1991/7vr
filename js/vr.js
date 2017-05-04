@@ -4,7 +4,25 @@
 	$.cookie("usr_tk",'1203102301230')
 })(jQuery, window, document);
 
-
+/*ajax*/
+(function($, win, doc){
+	$.vr.ajax = {
+		post: function(param) {
+			$.ajax({
+				url: param.url,
+				data: param.data,
+				dataType: 'json',
+				error: function() {
+					alert('网络错误!');
+				},
+				success: param.success,
+				timeout: 60000,
+				type: 'POST'
+				
+			});
+		}
+	}
+})(jQuery, window, document);
 
 /*isLogin*/
 (function($, win, doc){
