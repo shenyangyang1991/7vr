@@ -613,7 +613,11 @@ html, body {
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 }
-
+#download .dl-icon img {
+	display: block;
+	width: 100px;
+	height: 100px;
+}
 #download .dl-context,
 #equipment .em-content {
 	width: 610px;
