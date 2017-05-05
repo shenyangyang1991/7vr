@@ -7,7 +7,7 @@
 		DOWNLOAD_CONTENT : "<div class='dl-context pull-left'></div>",
 		DOWNLOAD_H : "<div class='dl-h'></div>",
 		DOWNLOAD_TXT : "<div class='dl-txt'></div>",
-		DOWNLOAD_BTN : "<div class='dl-btn pull-right'></div>"
+		DOWNLOAD_BTN : "<a class='dl-btn pull-right'></a>"
 		
 	}
 	
@@ -50,7 +50,7 @@
 			$(staticTemp.DOWNLOAD_H).text(data.title).appendTo(_c);
 			$(staticTemp.DOWNLOAD_TXT).text(data.content).appendTo(_c);
 			_c.appendTo(_l);
-			$(staticTemp.DOWNLOAD_BTN).text('会员下载').appendTo(_l);
+			$(staticTemp.DOWNLOAD_BTN).attr('href',data.down_url).text('会员下载').appendTo(_l);
 			$('.dl-l').append(_l);
 		}
 	}
