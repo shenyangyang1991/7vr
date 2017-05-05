@@ -8,6 +8,8 @@
 	$api['downloadinfo'] = array('url'=>'/Course/Course/get_app_list','type'=>'post','info'=>'getinfo');
 	//服务接口
 	$api['serverinfo'] = array('url'=>'/Course/Course/get_fuwu','type'=>'post','info'=>'getinfo');
+	//服务接口
+	$api['equipmentinfo'] = array('url'=>'/Course/Course/get_shebei','type'=>'post','info'=>'getinfo');
 
 	
 ?>
