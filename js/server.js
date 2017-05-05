@@ -6,7 +6,7 @@
 		CLASSES_STATUS : "<p></p>",
 		CLASSES_LIST_B : "<div class='em-l-list'></div>",
 		CLASSES_LIST_W : "<div class='em-l-wrapper'></div>",
-		CLASSES_LIST_I : "<a class='em-l-item pull-left' href='classes-details.html'></a>",
+		CLASSES_LIST_I : "<a class='em-l-item pull-left'></a>",
 		CLASSES_TH : "<div class='thumbnail'></div>",
 		CLASSES_TH_IMG : "<img/>",
 		CLASSES_CONTENT : "<div class='em-l-i-content'></div>",
@@ -68,6 +68,7 @@
 				_sta.appendTo(_st);
 				_st.appendTo(_c);
 				_li.append(_c);
+				_li.attr('href', data.label[i].url);
 				_lw.append(_li);
 			}
 			
