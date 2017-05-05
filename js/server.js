@@ -14,8 +14,8 @@
 		CLASSES_STA : "<div class='em-i-status'></div>",
 		CLASSES_STA_W : "<span class='pull-left'></span>",
 		CLASSES_STA_C : "<span></span>",
-		CLASSES_STA_M : "<span></span>"
-		
+		CLASSES_STA_M : "<span></span>",
+		SERVER_H: "<div class='em-i-h'></div>"
 	}
 	
 	var Classes = function() {
@@ -25,9 +25,9 @@
 			// loadding
 			$.vr.ajax.post({
 				url: 'php/index.php',
-				data: {url:'classesinfo'},
+				data: {url:'serverinfo'},
 				success: function(data) {
-					//console.log(data);
+					console.log(data);
 					if (data && data.code == "1") {
 						that.render(data.data);
 					} else {

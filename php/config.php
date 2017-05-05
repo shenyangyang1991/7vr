@@ -6,4 +6,8 @@
 	$api['classesinfo'] = array('url'=>'/Course/Course/get_class','type'=>'post','info'=>'getinfo');
 	//软件下载接口
 	$api['downloadinfo'] = array('url'=>'/Course/Course/get_app_list','type'=>'post','info'=>'getinfo');
+	//服务接口
+	$api['serverinfo'] = array('url'=>'/Course/Course/get_fuwu','type'=>'post','info'=>'getinfo');
+
+	
 ?>
