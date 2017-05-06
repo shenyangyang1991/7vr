@@ -1,7 +1,7 @@
 /*init*/
 (function($, win, doc){
 	$.vr = {};
-	$.cookie("usr_tk",'1203102301230')
+	//$.cookie("usr_tk",'1203102301230')
 })(jQuery, window, document);
 
 /*ajax*/
@@ -94,7 +94,10 @@
 	$.vr.login = {
 		show: function() {
 			$.vr.bomb('login');
-			$('#login .body-main').load('component/login/login.html')
+			$('#login .body-main').load('component/login/login.html', function() {
+				if ($.cookie('ao'))
+					$('#auto-login').attr('checked','checked');
+			});
 		},
 		hide: function() {
 			$('#login').remove();
@@ -115,7 +118,41 @@
 			$.vr.register.show();
 		},
 		signin: function() {
+			var __m = $('#mobile').val(),
+				__p = $('#passwd').val();
+				
+			if (!$.trim(__m)) {
+				alert('请输入手机号！');
+				return;
+			}
 			
+			if (!$.trim(__p)) {
+				alert('请输入密码！');
+				return;
+			}
+			
+
+			$.vr.ajax.post({
+				url: 'php/index.php',
+				data: {url:'login', username: __m, password: __p},
+				success: function(data) {
+					console.log(data);
+					if (data && data.code == "1") {
+						var t = data.token;
+						if ($.cookie('ao')) {
+							$.cookie('usr_tk', t, { expires: 7 });
+						} else {
+							$.cookie('usr_tk', t);
+						}
+						
+						$.cookie('uif', JSON.stringify(data.data));
+						
+						location.reload();
+					} else {
+						alert('登录失败！原因：账号密码不正确');
+					}
+				}
+			});
 		}
 	};
 })(jQuery, window, document);
@@ -155,10 +192,45 @@
 
 /*register*/
 (function($, win, doc){
+	var __is = false;
+	function get() {
+		return __is;
+	}
+	var __sid = "";
+	function getSid() {
+		return __sid;
+	}
 	$.vr.register = {
 		show: function() {
 			$.vr.bomb('register');
-			$('#register .body-main').load('component/register/register.html')
+			$('#register .body-main').load('component/register/register.html',function() {
+				$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getimg'},
+					success: function(data) {
+						if (data && data.code == "1") {
+							__sid = data.data.img_sid;
+							$('#imgcode').attr('src', data.data.img_src);
+						} else {
+							alert('获取图片失败！');
+						}
+					}
+				});
+			});
+		},
+		again: function() {
+			$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getimg'},
+					success: function(data) {
+						if (data && data.code == "1") {
+							__sid = data.data.img_sid;
+							$('#imgcode').attr('src', data.data.img_src);
+						} else {
+							alert('获取图片失败！');
+						}
+					}
+				});
 		},
 		hide: function() {
 			$('#register').remove();
@@ -167,11 +239,76 @@
 			$('#register').remove();
 			$.vr.login.show();
 		},
+		getCode: function() {
+			if (!getSid()) {
+				alert('请重新获取图片验证码！');
+				return;
+			}
+			var ic = $('#icode').val();
+			if (!$.trim(ic)) {
+				alert('请输入图片验证码！');
+				return;
+			}
+			
+			$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getcode', img_code: ic, img_sid: getSid()},
+					success: function(data) {
+						if (data && data.code == "1") {
+							
+						} else {
+							alert('获取短信验证码错误！');
+						}
+					}
+				});
+			
+			
+		},
 		signin: function() {
 			
+			if (!get()) {
+				alert('请同意平台协议后注册信息！');
+				return;
+			}
+			
+			var __m = $('#mobile').val(),
+				__p = $('#passwd').val();
+				
+			if (!$.trim(__m)) {
+				alert('请输入手机号！');
+				return;
+			}
+			
+			if (!$.trim(__p)) {
+				alert('请输入密码！');
+				return;
+			}
+			
+
+			$.vr.ajax.post({
+				url: 'php/index.php',
+				data: {url:'register', username: __m, password: __p},
+				success: function(data) {
+					console.log(data);
+					if (data && data.code == "1") {
+						var t = data.token;
+						
+						$.cookie('usr_tk', t);
+						
+						$.cookie('uif', JSON.stringify(data.data));
+						
+						location.reload();
+					} else {
+						alert('注册失败！');
+					}
+				}
+			});
 		},
 		protocol: function() {
 			$.vr.protocol.show();
+		},
+		auto: function() {
+			__is = true;
 		}
 	};
 })(jQuery, window, document);

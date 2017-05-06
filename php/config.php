@@ -10,6 +10,14 @@
 	$api['serverinfo'] = array('url'=>'/Course/Course/get_fuwu','type'=>'post','info'=>'getinfo');
 	//服务接口
 	$api['equipmentinfo'] = array('url'=>'/Course/Course/get_shebei','type'=>'post','info'=>'getinfo');
+	//登录接口
+	$api['login'] = array('url'=>'/user/login/index','type'=>'post','info'=>'login');
+	//注册接口
+	$api['register'] = array('url'=>'/user/register/index','type'=>'post','info'=>'register');
+	//获取图片接口
+	$api['getimg'] = array('url'=>'/basic/imgverify/get_code','type'=>'post','info'=>'getImg');
+	//获取短信接口
+	$api['getcode'] = array('url'=>'/user/user/get_code','type'=>'post','info'=>'getcode');
 
 	
 ?>
