@@ -119,7 +119,10 @@
 		signin: function() {
 			var __m = $('#mobile').val(),
 				__p = $('#passwd').val();
-				
+			
+			if (__m == "请输入手机号") {
+				__m = "";
+			}
 			if (!$.trim(__m)) {
 				alert('请输入手机号！');
 				return;
