@@ -9,20 +9,21 @@
 			<div class="code-input pull-left">
 				<input type="text" name="icode" id="icode" value="图片验证码" onblur="$.vr.form.placeholderBlur(this, '图片验证码')" onfocus="$.vr.form.placeholderFocus(this, '图片验证码')" />
 			</div>
-			<a href="javascript:void();" class="code-btn pull-right">
-				<img src="" title="点击更换图片"/>
+			<a href="javascript:$.vr.forget.again();" class="code-btn pull-right">
+				<img id="imgcode" src="" title="点击更换图片"/>
 			</a>
 		</div>
 		<div class="code-group">
 			<div class="code-input pull-left">
 				<input type="text" name="xcode" id="xcode" value="验证码" onblur="$.vr.form.placeholderBlur(this, '验证码')" onfocus="$.vr.form.placeholderFocus(this, '验证码')" />
 			</div>
-			<a href="" class="code-btn pull-right">
+			<a href="javascript:$.vr.forget.getCode();" class="code-btn pull-right">
 				获取动态码
 			</a>
 		</div>
 		<div class="input">
-			<input type="text" name="passwd" id="passwd" value="请输入6~12位重置密码" onblur="$.vr.form.placeholderBlur(this, '请输入6~12位重置密码')" onfocus="$.vr.form.placeholderFocus(this, '请输入6~12位重置密码')" />
+			<input type="password" name="passwd" id="passwd" onblur="$.vr.form.passwordBlur(this, (this.nextElementSibling || this.nextSibling));"  />
+			<div class="placeholderp" onclick="$.vr.form.passwordFocus(this, (this.previousElementSibling || this.previousSibling));">请输入6~12位重置密码</div>
 		</div>
 
 		<a class="login-sub" href="javascript:$.vr.forget.signin();">

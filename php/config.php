@@ -15,9 +15,10 @@
 	//注册接口
 	$api['register'] = array('url'=>'/user/register/index','type'=>'post','info'=>'register');
 	//获取图片接口
-	$api['getimg'] = array('url'=>'/basic/imgverify/get_code','type'=>'post','info'=>'getImg');
+	$api['getimg'] = array('url'=>'/basic/ImgVerify/get_code','type'=>'post','info'=>'getImg');
 	//获取短信接口
 	$api['getcode'] = array('url'=>'/user/user/get_code','type'=>'post','info'=>'getcode');
-
+	//修改密码接口
+	$api['resetpwd'] = array('url'=>'/user/user/reset_pwd_for_phone','type'=>'post','info'=>'resetpwd');
 	
 ?>

@@ -1,7 +1,6 @@
 /*init*/
 (function($, win, doc){
 	$.vr = {};
-	//$.cookie("usr_tk",'1203102301230')
 })(jQuery, window, document);
 
 /*ajax*/
@@ -159,10 +158,104 @@
 
 /*forget*/
 (function($, win, doc){
+	var __sid = "";
+	function getSid() {
+		return __sid;
+	}
+	var __i = false;
+	function countDown() {
+
+		$('.code-btn').text('60秒后，可重新获取');
+		var count = 60;
+		var __timer = setInterval(function() {
+			count --;
+			if (count == 0) {
+				$('.code-btn').text('获取动态码');
+				__i = false;
+				clearInterval(__timer);
+			}
+			$('.code-btn').text(count + '秒后，可重新获取');
+			
+		}, 1000);
+	}
 	$.vr.forget = {
 		show: function() {
 			$.vr.bomb('forget');
-			$('#forget .body-main').load('component/forget/forget.html')
+			$('#forget .body-main').load('component/forget/forget.html',function() {
+				$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getimg'},
+					success: function(data) {
+						if (data && data.code == "1") {
+							__sid = data.data.img_sid;
+							$('#imgcode').attr('src', data.data.img_src);
+						} else {
+							alert('获取图片失败！');
+						}
+					}
+				});
+			})
+		},
+		again: function() {
+			$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getimg'},
+					success: function(data) {
+						if (data && data.code == "1") {
+							__sid = data.data.img_sid;
+							$('#imgcode').attr('src', data.data.img_src);
+						} else {
+							alert('获取图片失败！');
+						}
+					}
+				});
+		},
+		getCode: function() {
+			
+			if (__i) {return;}
+			__i = true;
+			
+			if (!getSid()) {
+				alert('请点击图片，重新获取图片验证码！');
+				__i = false;
+				return;
+			}
+			
+			var ph = $('#mobile').val();
+			if (ph == "请输入手机号") {
+				ph = "";
+			}
+			if (!$.trim(ph)) {
+				alert('请输入手机号！');
+				__i = false;
+				return;
+			}
+			
+			
+			var ic = $('#icode').val();
+			if (ic == "图片验证码") {
+				ic = "";
+			}
+			if (!$.trim(ic)) {
+				alert('请输入图片验证码！');
+				__i = false;
+				return;
+			}
+			
+			$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getcode', img_code: ic, img_sid: getSid(), username: ph},
+					success: function(data) {
+						if (data && data.code == "1") {
+							countDown();
+						} else {
+							alert('获取短信验证码错误！请检查填写的内容是否正确');
+							__i = false;
+						}
+					}
+				});
+			
+			
 		},
 		hide: function() {
 			$('#forget').remove();
@@ -172,7 +265,41 @@
 			$.vr.login.show();
 		},
 		signin: function() {
+			var __m = $('#mobile').val(),
+				__p = $('#passwd').val(),
+				__c = $('#xcode').val();
+			if (__m == "请输入手机号") {
+				__m = "";
+			}
+			if (__c == "验证码") {
+				__c = "";
+			}
+			if (!$.trim(__m)) {
+				alert('请输入手机号！');
+				return;
+			}
 			
+			if (!$.trim(__p)) {
+				alert('请输入密码！');
+				return;
+			}
+			if (!$.trim(__c)) {
+				alert('请输入短信验证码！');
+				return;
+			}
+
+			$.vr.ajax.post({
+				url: 'php/index.php',
+				data: {url:'resetpwd', phone: __m, password: __p, code: __c},
+				success: function(data) {
+					console.log(data);
+					if (data && data.code == "1") {
+						
+					} else {
+						alert('修改密码失败！原因：'+data.msg);
+					}
+				}
+			});
 		}
 	};
 })(jQuery, window, document);
@@ -200,6 +327,23 @@
 	function getSid() {
 		return __sid;
 	}
+	var __i = false;
+	function countDown() {
+
+		$('.code-btn').text('60秒后，可重新获取');
+		var count = 60;
+		var __timer = setInterval(function() {
+			count --;
+			if (count == 0) {
+				$('.code-btn').text('获取动态码');
+				__i = false;
+				clearInterval(__timer);
+			}
+			$('.code-btn').text(count + '秒后，可重新获取');
+			
+		}, 1000);
+	}
+	
 	$.vr.register = {
 		show: function() {
 			$.vr.bomb('register');
@@ -240,24 +384,46 @@
 			$.vr.login.show();
 		},
 		getCode: function() {
+			
+			if (__i) {return;}
+			__i = true;
+			
 			if (!getSid()) {
-				alert('请重新获取图片验证码！');
+				alert('请点击图片，重新获取图片验证码！');
+				__i = false;
 				return;
 			}
+			
+			var ph = $('#mobile').val();
+			if (ph == "请输入手机号") {
+				ph = "";
+			}
+			if (!$.trim(ph)) {
+				alert('请输入手机号！');
+				__i = false;
+				return;
+			}
+			
+			
 			var ic = $('#icode').val();
+			if (ic == "图片验证码") {
+				ic = "";
+			}
 			if (!$.trim(ic)) {
 				alert('请输入图片验证码！');
+				__i = false;
 				return;
 			}
 			
 			$.vr.ajax.post({
 					url: 'php/index.php',
-					data: {url: 'getcode', img_code: ic, img_sid: getSid()},
+					data: {url: 'getcode', img_code: ic, img_sid: getSid(), username: ph},
 					success: function(data) {
 						if (data && data.code == "1") {
-							
+							countDown();
 						} else {
-							alert('获取短信验证码错误！');
+							alert('获取短信验证码错误！请检查填写的内容是否正确');
+							__i = false;
 						}
 					}
 				});
@@ -272,8 +438,14 @@
 			}
 			
 			var __m = $('#mobile').val(),
-				__p = $('#passwd').val();
-				
+				__p = $('#passwd').val(),
+				__c = $('#xcode').val();
+			if (__m == "请输入手机号") {
+				__m = "";
+			}
+			if (__c == "验证码") {
+				__c = "";
+			}
 			if (!$.trim(__m)) {
 				alert('请输入手机号！');
 				return;
@@ -283,11 +455,14 @@
 				alert('请输入密码！');
 				return;
 			}
-			
+			if (!$.trim(__c)) {
+				alert('请输入短信验证码！');
+				return;
+			}
 
 			$.vr.ajax.post({
 				url: 'php/index.php',
-				data: {url:'register', username: __m, password: __p},
+				data: {url:'register', username: __m, password: __p, code: __c},
 				success: function(data) {
 					console.log(data);
 					if (data && data.code == "1") {
@@ -299,7 +474,7 @@
 						
 						location.reload();
 					} else {
-						alert('注册失败！');
+						alert('注册失败！原因：'+data.msg);
 					}
 				}
 			});
@@ -329,10 +504,29 @@
 			} else {
 				$(that).val(content);
 			}
+		},
+		passwordFocus: function(that, sliding) {
+			$(that).hide();
+			$(that).prev().focus();
+		},
+		passwordBlur: function(that) {
+			var __v = $(that).val();
+			if ($.trim(__v)) {
+				
+			} else {
+				$(that).next().show();
+			}
 		}
 	};
 })(jQuery, window, document);
-
+/*loginout*/
+(function($, win, doc){
+	$.vr.loginout = function() {
+		$.cookie('uif', '');
+		$.cookie('usr_tk', '');
+		location.reload();
+	};
+})(jQuery, window, document);
 /*navbar*/
 (function($, win, doc){
 	$.vr.navbar = function(opts) {
@@ -393,6 +587,7 @@
 				var __subs = $($.vr.navbar_static.NAVBAR_LINK_SUB_ELE);
 				__subs.append($($.vr.navbar_static.NAVBAR_LINK_SUB_ITEM_ELE).attr('href','personal.html').text('个人资料'))
 				__subs.append($($.vr.navbar_static.NAVBAR_LINK_SUB_ITEM_ELE).attr('href','account.html').text('账户安全'))
+				__subs.append($($.vr.navbar_static.NAVBAR_LINK_SUB_ITEM_ELE).attr('href','javascript:$.vr.loginout();').text('退出'))
 				__lnk.addClass('submenu').attr('href', 'javascript:$.vr.navbarevent.submenu("#navbar .submenu");')
 					.text(__content.__txt)
 					.append($('<b class="caret"></b>'))

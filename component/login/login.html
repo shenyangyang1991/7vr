@@ -6,7 +6,8 @@
 			<input type="text" name="mobile" id="mobile" value="请输入手机号" onblur="$.vr.form.placeholderBlur(this, '请输入手机号')" onfocus="$.vr.form.placeholderFocus(this, '请输入手机号')" />
 		</div>
 		<div class="input">
-			<input type="password" name="passwd" id="passwd" placeholder="请输入6~12位密码"  />
+			<input type="password" name="passwd" id="passwd" onblur="$.vr.form.passwordBlur(this, (this.nextElementSibling || this.nextSibling));"  />
+			<div class="placeholderp" onclick="$.vr.form.passwordFocus(this, (this.previousElementSibling || this.previousSibling));">请输入6~12位密码</div>
 		</div>
 		<div class="attl">
 			<div class="rem pull-left">
