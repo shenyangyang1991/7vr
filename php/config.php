@@ -22,5 +22,7 @@
 	$api['resetpwd'] = array('url'=>'/user/user/reset_pwd_for_phone','type'=>'post','info'=>'resetpwd');
 	//课程详情
 	$api['classesdetails'] = array('url'=>'/Course/Course/get_class_data','type'=>'post','info'=>'classesdetails');
-	
+	//设备点击
+	$api['clicke'] = array('url'=>'/Course/Course/get_shebei_data','type'=>'post','info'=>'clicke');
+	 
 ?>

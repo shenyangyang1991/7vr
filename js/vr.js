@@ -165,11 +165,45 @@
 			if (!$.vr.utils.isLogin()) {
 				$.vr.login.show();
 			}else {
-				location.href = url;
+				window.open(url);
 			}
 		}
 	}
-})(jQuery, window, document);	
+})(jQuery, window, document);
+/*server*/
+(function($, win, doc){
+	$.vr.server = {
+		server: function(url, id) {
+			$.vr.ajax.post({
+				url: 'php/index.php',
+				data: {url:'clicke',class_label_id: id},
+				success: function(data) {
+					
+				}
+			});
+			
+			window.open(url);
+		}
+	}
+})(jQuery, window, document);
+/*equipment*/
+(function($, win, doc){
+	$.vr.equipment = {
+		equipment: function(url, id) {
+			$.vr.ajax.post({
+				url: 'php/index.php',
+				data: {url:'clicke',class_label_id: id},
+				success: function(data) {
+					
+				}
+			});
+			
+			window.open(url);
+		}
+	}
+})(jQuery, window, document);
+
+
 /*forget*/
 (function($, win, doc){
 	var __sid = "";

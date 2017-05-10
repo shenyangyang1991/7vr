@@ -68,7 +68,7 @@
 				_sta.appendTo(_st);
 				_st.appendTo(_c);
 				_li.append(_c);
-				_li.attr('href', data.label[i].url);
+				_li.attr('href', 'javascript:$.vr.server.server("'+data.label[i].url+'",'+data.label[i].class_label_id+')');
 				_lw.append(_li);
 			}
 			
