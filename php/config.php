@@ -20,5 +20,7 @@
 	$api['getcode'] = array('url'=>'/user/user/get_code','type'=>'post','info'=>'getcode');
 	//修改密码接口
 	$api['resetpwd'] = array('url'=>'/user/user/reset_pwd_for_phone','type'=>'post','info'=>'resetpwd');
+	//课程详情
+	$api['classesdetails'] = array('url'=>'/Course/Course/get_class_data','type'=>'post','info'=>'classesdetails');
 	
 ?>

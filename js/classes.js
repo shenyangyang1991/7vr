@@ -6,7 +6,7 @@
 		CLASSES_STATUS : "<p></p>",
 		CLASSES_LIST_B : "<div class='em-l-list'></div>",
 		CLASSES_LIST_W : "<div class='em-l-wrapper'></div>",
-		CLASSES_LIST_I : "<a class='em-l-item pull-left' href='classes-details.html'></a>",
+		CLASSES_LIST_I : "<a class='em-l-item pull-left'></a>",
 		CLASSES_TH : "<div class='thumbnail'></div>",
 		CLASSES_TH_IMG : "<img/>",
 		CLASSES_CONTENT : "<div class='em-l-i-content'></div>",
@@ -54,7 +54,7 @@
 			$(staticTemp.CLASSES_REMARK).text(data.content).appendTo(_b);
 			$(staticTemp.CLASSES_STATUS).text('(共'+data.kc_num+'课程，'+data.ks_time+'分钟，'+data.look_num+'浏览量)').appendTo(_b);
 			for (var i = 0; i < data.course.length; i ++) {
-				var _li = $(staticTemp.CLASSES_LIST_I),
+				var _li = $(staticTemp.CLASSES_LIST_I).attr('href', 'classes-details.html?id='+data.course[i].course_id+'&h=0'),
 				_c = $(staticTemp.CLASSES_CONTENT),
 				_st = $(staticTemp.CLASSES_STA),
 				_sta = $(staticTemp.CLASSES_STA_W);

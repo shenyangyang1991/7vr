@@ -158,7 +158,18 @@
 		}
 	};
 })(jQuery, window, document);
-
+/*download*/
+(function($, win, doc){
+	$.vr.download = {
+		download: function(url) {
+			if (!$.vr.utils.isLogin()) {
+				$.vr.login.show();
+			}else {
+				location.href = url;
+			}
+		}
+	}
+})(jQuery, window, document);	
 /*forget*/
 (function($, win, doc){
 	var __sid = "";
@@ -168,16 +179,16 @@
 	var __i = false;
 	function countDown() {
 
-		$('.code-btn').text('60秒后，可重新获取');
+		$('.cbtn').text('60秒后，可重新获取');
 		var count = 60;
 		var __timer = setInterval(function() {
 			count --;
 			if (count == 0) {
-				$('.code-btn').text('获取动态码');
+				$('.cbtn').text('获取动态码');
 				__i = false;
 				clearInterval(__timer);
 			}
-			$('.code-btn').text(count + '秒后，可重新获取');
+			$('.cbtn').text(count + '秒后，可重新获取');
 			
 		}, 1000);
 	}
@@ -297,7 +308,9 @@
 				success: function(data) {
 					console.log(data);
 					if (data && data.code == "1") {
-						
+						alert('找回密码成功！请登录');
+						$('#forget').remove();
+						$.vr.login.show();
 					} else {
 						alert('修改密码失败！原因：'+data.msg);
 					}
@@ -333,16 +346,16 @@
 	var __i = false;
 	function countDown() {
 
-		$('.code-btn').text('60秒后，可重新获取');
+		$('.cbtn').text('60秒后，可重新获取');
 		var count = 60;
 		var __timer = setInterval(function() {
 			count --;
 			if (count == 0) {
-				$('.code-btn').text('获取动态码');
+				$('.cbtn').text('获取动态码');
 				__i = false;
 				clearInterval(__timer);
 			}
-			$('.code-btn').text(count + '秒后，可重新获取');
+			$('.cbtn').text(count + '秒后，可重新获取');
 			
 		}, 1000);
 	}

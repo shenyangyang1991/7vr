@@ -50,7 +50,7 @@
 			$(staticTemp.DOWNLOAD_H).text(data.title).appendTo(_c);
 			$(staticTemp.DOWNLOAD_TXT).text(data.content).appendTo(_c);
 			_c.appendTo(_l);
-			$(staticTemp.DOWNLOAD_BTN).attr('href',data.down_url).text('会员下载').appendTo(_l);
+			$(staticTemp.DOWNLOAD_BTN).attr('href', '$.vr.download.download('+data.down_url+')').text('会员下载').appendTo(_l);
 			$('.dl-l').append(_l);
 		}
 	}
