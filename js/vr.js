@@ -221,42 +221,37 @@
 				$('.cbtn').text('获取动态码');
 				__i = false;
 				clearInterval(__timer);
+				return;
 			}
 			$('.cbtn').text(count + '秒后，可重新获取');
 			
 		}, 1000);
 	}
+	
+	function ccode() {
+		$('#icode').val('图片验证码');
+		$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getimg'},
+					success: function(data) {
+						if (data && data.code == "1") {
+							__sid = data.data.img_sid;
+							$('#imgcode').attr('src', data.data.img_src);
+						} else {
+							alert('获取图片失败！');
+						}
+					}
+				});
+	}
 	$.vr.forget = {
 		show: function() {
 			$.vr.bomb('forget');
 			$('#forget .body-main').load('component/forget/forget.html',function() {
-				$.vr.ajax.post({
-					url: 'php/index.php',
-					data: {url: 'getimg'},
-					success: function(data) {
-						if (data && data.code == "1") {
-							__sid = data.data.img_sid;
-							$('#imgcode').attr('src', data.data.img_src);
-						} else {
-							alert('获取图片失败！');
-						}
-					}
-				});
+				ccode();
 			})
 		},
 		again: function() {
-			$.vr.ajax.post({
-					url: 'php/index.php',
-					data: {url: 'getimg'},
-					success: function(data) {
-						if (data && data.code == "1") {
-							__sid = data.data.img_sid;
-							$('#imgcode').attr('src', data.data.img_src);
-						} else {
-							alert('获取图片失败！');
-						}
-					}
-				});
+			ccode();
 		},
 		getCode: function() {
 			
@@ -295,9 +290,11 @@
 					data: {url: 'getcode', img_code: ic, img_sid: getSid(), username: ph},
 					success: function(data) {
 						if (data && data.code == "1") {
+							
 							countDown();
+							ccode();
 						} else {
-							alert('获取短信验证码错误！请检查填写的内容是否正确');
+							alert('获取短信验证码错误！原因:'+data.msg);
 							__i = false;
 						}
 					}
@@ -388,43 +385,38 @@
 				$('.cbtn').text('获取动态码');
 				__i = false;
 				clearInterval(__timer);
+				return;
 			}
 			$('.cbtn').text(count + '秒后，可重新获取');
 			
 		}, 1000);
 	}
 	
+	function ccode() {
+		$('#icode').val('图片验证码');
+		$.vr.ajax.post({
+					url: 'php/index.php',
+					data: {url: 'getimg'},
+					success: function(data) {
+						if (data && data.code == "1") {
+							__sid = data.data.img_sid;
+							$('#imgcode').attr('src', data.data.img_src);
+						} else {
+							alert('获取图片失败！');
+						}
+					}
+				});
+	}
+	
 	$.vr.register = {
 		show: function() {
 			$.vr.bomb('register');
 			$('#register .body-main').load('component/register/register.html',function() {
-				$.vr.ajax.post({
-					url: 'php/index.php',
-					data: {url: 'getimg'},
-					success: function(data) {
-						if (data && data.code == "1") {
-							__sid = data.data.img_sid;
-							$('#imgcode').attr('src', data.data.img_src);
-						} else {
-							alert('获取图片失败！');
-						}
-					}
-				});
+				ccode();
 			});
 		},
 		again: function() {
-			$.vr.ajax.post({
-					url: 'php/index.php',
-					data: {url: 'getimg'},
-					success: function(data) {
-						if (data && data.code == "1") {
-							__sid = data.data.img_sid;
-							$('#imgcode').attr('src', data.data.img_src);
-						} else {
-							alert('获取图片失败！');
-						}
-					}
-				});
+			ccode();
 		},
 		hide: function() {
 			$('#register').remove();
@@ -471,8 +463,9 @@
 					success: function(data) {
 						if (data && data.code == "1") {
 							countDown();
+							ccode();
 						} else {
-							alert('获取短信验证码错误！请检查填写的内容是否正确');
+							alert('获取短信验证码错误！原因:'+data.msg);
 							__i = false;
 						}
 					}
